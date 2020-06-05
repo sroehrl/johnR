@@ -5,8 +5,18 @@ import InvitationCard from './InvitationCard';
 import { Dimensions } from 'react-native';
 
 export default function CaroselView(props) {
-  let deviceWidth = Dimensions.get('window').width;
-  console.log(props);
+  const deviceWidth = Dimensions.get('window').width;
+  const [data,setData] = React.useState([])
+  React.useState(async ()=>{
+    let response = await fetch(
+        'https://www.cs.virginia.edu/~dgg6b/Mobile/ScrollLabJSON/cards.json',
+    {
+      method:'GET'
+    });
+    
+    let parseObject = await response.json();
+    setData(item => [...parseObject])
+  },[])
 
   function renderItem({ item, index }) {
     //Render invitation
@@ -17,11 +27,10 @@ export default function CaroselView(props) {
     );
   }
 
-  if (props.eventsData.length > 0) {
     return (
       <View style={styles.container}>
         <Carousel
-          data={props.eventsData}
+          data={data}
           renderItem={renderItem}
           sliderHeight={200}
           sliderWidth={deviceWidth}
@@ -29,8 +38,7 @@ export default function CaroselView(props) {
         />
       </View>
     );
-  }
-  return (<View />)
+
 }
 
 const styles = StyleSheet.create({

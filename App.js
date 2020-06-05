@@ -4,13 +4,10 @@ import Constants from 'expo-constants';
 import CaroselView from './components/ScrollPage/CaroselView';
 import Home from './components/HomeScreen/Home';
 import Login from './components/HomeScreen/Login';
-import { LinearGradient } from 'expo-linear-gradient';
 import moment from "moment";
-// import { createStackNavigator } from 'react-navigation'
 import { StackActions, NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from "@react-navigation/stack";
 
-// import Router from './Router';
 const Stack = createStackNavigator()
 
 //Keep the data at the highest level and then 
@@ -26,18 +23,6 @@ export default class App extends React.Component {
     loading: true,
   };
 
-  componentDidMount() {
-    const fetchData = async () => {
-      let response = await fetch(
-        'https://www.cs.virginia.edu/~dgg6b/Mobile/ScrollLabJSON/cards.json'
-      );
-      let parseObject = await response.json();
-      this.setState({ data: parseObject });
-      this.setState({ loading: false });
-      //Setup call set State, 
-    };
-    fetchData();
-  }
 
 
   //AssignIDs and formats dates 
@@ -57,41 +42,23 @@ export default class App extends React.Component {
   }
 
 
-
-
   render() {
-    //Rember to pass your pending events to the Carosel View.
-    //Using the correct Prop. 
-   /* return (
-      <NavigationContainer>
-        <rootStack.Navigator initialRouteName="LoadingScreen">
-          <rootStack.Screen name="LoadingScreen" assets={SplashNavigation.png}/>
-        </rootStack.Navigator>
-      </NavigationContainer>
-    );*/
+
     return (
         <NavigationContainer>
-          <Stack.Navigator initalRouteName="Carosel">
+          <Stack.Navigator>
+            <Stack.Screen name="Home"  component={Home} options={headerOptions}/>
             <Stack.Screen name="Login" component={Login}/>
-            <Stack.Screen name="Carosel">
-              {props => <CaroselView {...props} eventsData={this.state.data} />}
-            </Stack.Screen>
-            <Stack.Screen name="Home"  component={Home}/>
+            <Stack.Screen name="Carosel" component={CaroselView} options={headerOptions}/>
           </Stack.Navigator>
         </NavigationContainer>
-      /*<View style={styles.container}>
-        <View style={{ height: 40, width: "100%" }} />
-        <LinearGradient
-          colors={['#FFFFFF', '#D3DAEB', '#FFFFFF']}>
-          <CaroselView eventsData={this.state.data} />
-        </LinearGradient>
-      </View>*/
+
     );
   }
 }
-
-
-
+const headerOptions = {
+  headerTintColor:'red'
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -14,7 +14,6 @@ export default function InvationCard(props) {
   //Implement the format Date function
   function formatDate(date) {
     let dateArray = date.split(',')
-    console.log(dateArray)
     let dateObject = moment(dateArray[1], "DD MM YYYY")
     let parsedDate = moment(dateObject).format("dddd D MMMM")
     let time = moment(dateArray[2], "h:mm a")
@@ -29,11 +28,11 @@ export default function InvationCard(props) {
         <Avatar.Image size={50} source={{ uri: `${imageBase}${props.item.pic}` }} />
         <View style={styles.textContainer}>
           <Text 
-          style={{fontWeight: "bold", fontSize: 14, fontFamily: "Helvetica"}}
+          style={{fontWeight: "bold", fontSize: 14}}
           >{props.item.name} 
           </Text>
           <Text 
-          style={{opacity: 0.5, fontFamily: "Helvetica", color: "#000000", fontSize: 14}}
+          style={{opacity: 0.5, color: "#000000", fontSize: 14}}
           >{formatDate(props.item.date)}
           </Text>
         </View>

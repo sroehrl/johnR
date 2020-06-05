@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": null,
-  "packagerPid": null,
-  "webpackServerPort": 19006,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "packagerPort": 19001,
+  "packagerPid": 7169,
+  "webpackServerPort": null,
+  "expoServerNgrokUrl": "https://mp-dw4.anonymous.johnr.exp.direct",
+  "packagerNgrokUrl": "https://packager.mp-dw4.anonymous.johnr.exp.direct",
+  "ngrokPid": 7194
 }

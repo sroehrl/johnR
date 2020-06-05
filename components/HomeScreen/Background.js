@@ -60,7 +60,7 @@ const styles = StyleSheet.create(
         dindin: {
             height: 35, 
             width: 90, 
-            fontFamily: "Helvetica", 
+            // fontFamily: "Helvetica",
             fontSize: 29, 
             color: "#353535", 
             letterSpacing: 0, 
@@ -73,7 +73,7 @@ const styles = StyleSheet.create(
             height: 16, 
             //width: 300, 
             opacity: 0.5,
-            fontFamily: "Helvetica",
+            // fontFamily: "Helvetica",
             fontSize: 14,
             color: "#000000",
             letterSpacing: 0,

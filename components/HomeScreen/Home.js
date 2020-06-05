@@ -1,24 +1,32 @@
 import React from 'react';
-import { AsyncStorage, Image, StyleSheet, Text } from 'react-native';
+import { AsyncStorage, Image, StyleSheet, Text, View } from 'react-native';
 import SplashPage from '../../assets/SplashNavigation.png'
 export default function Home({navigation}){
     const [firstVisit,setFirstVisit] = React.useState(true);
     React.useEffect(()=>{
-        AsyncStorage.getItem('visitedBefore',(visit) =>{
-            if(visit !== null){
-                navigation.navigate('/Login');
-            } else {
-                // i am new
-                redirectTimer();
+        async function checkVirgin(){
+            try{
+                let visit = await AsyncStorage.getItem('visitedBefore');
+                console.log(visit);
+                if(visit !== null){
+                    navigation.navigate('Login');
+                } else {
+                    // i am new
+                    redirectTimer();
+                }
+            } catch (e) {
+                console.log('error retrieving asyncstorage')
             }
-        })
+        }
+        checkVirgin();
     },[]);
     const redirectTimer = () => {
-        setTimeout(()=>{
+        setTimeout(async ()=>{
             // set firstVisit
-            AsyncStorage.setItem('visitedBefore',true);
+            await AsyncStorage.setItem('visitedBefore','yes');
             // redirect here
-            navigation.navigate('/Login');
+            navigation.navigate('Login');
+
         },2000)
     }
     return (
@@ -29,7 +37,6 @@ export default function Home({navigation}){
 )
 }
 
-import {View} from "react-native-web";
 
 const styles = StyleSheet.create({
     image:{

@@ -12,7 +12,7 @@ export default function GetStartedHeaders() {
 const styles = StyleSheet.create(
     {
         getStarted: {
-            fontFamily: "Helvetica", 
+            // fontFamily: "Helvetica",
             fontSize: 14, 
             color: "#FFFFFF", 
             letterSpacing: 0,

@@ -1,19 +1,28 @@
 import React from 'react';
-import { AsyncStorage, Image, StyleSheet, Text, Button } from 'react-native';
-import {View} from "react-native-web";
+import { AsyncStorage, Image, StyleSheet, Text, Button, View } from 'react-native';
 import Background from "./Background";
 import * as Facebook from "expo-facebook";
 export default function Login(props){
     const [token,setToken] = React.useState(null);
     React.useEffect(()=>{
-        AsyncStorage.getItem('token', (token)=>{
-            if(token){
-                props.navigator.navigate('/CaroselView')
+        async function fire(){
+            try{
+                let token = await AsyncStorage.getItem('token');
+                props.navigator.navigate('Carosel');
+            } catch (e) {
+                console.log('no token')
             }
-        })
+        }
+        fire();
+
+
     },[]);
     const login = async () => {
-        console.log('clickEvent')
+        props.navigation.navigate('Carosel');
+        return;
+        /*await AsyncStorage.setItem('token', 'asdfuhe');
+        props.navigator.navigate('Carosel');
+        return;*/
         await Facebook.initializeAsync('184462529575747');
         const {
             type,
@@ -26,7 +35,7 @@ export default function Login(props){
         });
         if(type === 'success'){
             AsyncStorage.setItem('token', token);
-            props.navigator.navigate('/CaroselView')
+            props.navigation.navigate('/CaroselView')
         }
 
     }
@@ -42,7 +51,7 @@ export default function Login(props){
 const styles = StyleSheet.create(
     {
         getStarted: {
-            fontFamily: "Helvetica",
+            // fontFamily: "Helvetica",
             fontSize: 14,
             color: "#FFFFFF",
             letterSpacing: 0,
