@@ -18,11 +18,7 @@ export default function Login(props){
 
     },[]);
     const login = async () => {
-        props.navigation.navigate('Carosel');
-        return;
-        /*await AsyncStorage.setItem('token', 'asdfuhe');
-        props.navigator.navigate('Carosel');
-        return;*/
+
         await Facebook.initializeAsync('184462529575747');
         const {
             type,
