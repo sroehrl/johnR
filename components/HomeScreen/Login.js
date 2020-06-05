@@ -8,7 +8,7 @@ export default function Login(props){
         async function fire(){
             try{
                 let token = await AsyncStorage.getItem('token');
-                props.navigator.navigate('Carosel');
+                props.navigation.navigate('Carosel');
             } catch (e) {
                 console.log('no token')
             }
@@ -31,7 +31,7 @@ export default function Login(props){
         });
         if(type === 'success'){
             AsyncStorage.setItem('token', token);
-            props.navigation.navigate('/CaroselView')
+            props.navigation.navigate('Carosel')
         }
 
     }
